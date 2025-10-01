@@ -4,34 +4,17 @@ local function Print(msg)
   DEFAULT_CHAT_FRAME:AddMessage("|cff99ccffNorn UI|r: " .. tostring(msg))
 end
 
-ElvUI_SkinDB = ElvUI_SkinDB or {}
-
-local defaults = {
+-- Hardcoded configuration - no database needed
+local config = {
   enabled = true,
   texture = ("Interface\\AddOns\\%s\\media\\border.blp"):format(ADDON_NAME),
-  width = 133,
-  height = 51,
+  width = 256,  -- Increased width for bigger border
+  height = 64,  -- Increased height for bigger border
   xOffset = 0,
   yOffset = 5,
   blend = "BLEND",
   strata = "HIGH",
 }
-
-local function CopyDefaults(src, dst)
-  if type(dst) ~= "table" then
-    dst = {}
-  end
-  for k, v in pairs(src) do
-    if type(v) == "table" then
-      dst[k] = CopyDefaults(v, dst[k])
-    elseif dst[k] == nil then
-      dst[k] = v
-    end
-  end
-  return dst
-end
-
-local db = nil
 
 -- Compatibility wrapper for addon load checks across client versions
 local function IsElvUILoaded()
@@ -51,7 +34,7 @@ local function getOverlayParent(frame)
 end
 
 local function applyOverlayToFrame(frame, frameName)
-  if not db or not db.enabled then
+  if not config.enabled then
     return
   end
   if not frame or not frame.IsObjectType or not frame:IsObjectType("Frame") then
@@ -68,17 +51,17 @@ local function applyOverlayToFrame(frame, frameName)
   end
 
   local overlay = parent:CreateTexture(nil, "OVERLAY")
-  overlay:SetTexture(db.texture)
-  overlay:SetBlendMode(db.blend or "BLEND")
-  overlay:SetSize(db.width, db.height)
-  overlay:SetPoint("CENTER", parent, "CENTER", db.xOffset, db.yOffset)
+  overlay:SetTexture(config.texture)
+  overlay:SetBlendMode(config.blend or "BLEND")
+  overlay:SetSize(config.width, config.height)
+  overlay:SetPoint("CENTER", parent, "CENTER", config.xOffset, config.yOffset)
   overlay:Show()
 
   frame.ElvUI_SkinOverlay = overlay
 
   -- Keep on top
-  if parent.SetFrameStrata and db.strata then
-    parent:SetFrameStrata(db.strata)
+  if parent.SetFrameStrata and config.strata then
+    parent:SetFrameStrata(config.strata)
   end
 end
 
@@ -133,9 +116,6 @@ driver:RegisterEvent("GROUP_ROSTER_UPDATE")
 driver:RegisterEvent("PLAYER_TARGET_CHANGED")
 driver:SetScript("OnEvent", function(self, event)
   if event == "PLAYER_ENTERING_WORLD" then
-    ElvUI_SkinDB = CopyDefaults(defaults, ElvUI_SkinDB)
-    db = ElvUI_SkinDB
-
     if not IsElvUILoaded() then
       Print("ElvUI not loaded; overlay will attach when available.")
     end
@@ -150,23 +130,3 @@ driver:SetScript("OnEvent", function(self, event)
     C_Timer.After(0.2, attachAll)
   end
 end)
-
-SLASH_NORNEDIT1 = "/nornedit"
-SlashCmdList["NORNEDIT"] = function(msg)
-  msg = (msg or ""):lower()
-  if msg == "on" then
-    ElvUI_SkinDB.enabled = true
-    db = ElvUI_SkinDB
-    Print("Enabled")
-    attachAll()
-  elseif msg == "off" then
-    ElvUI_SkinDB.enabled = false
-    db = ElvUI_SkinDB
-    Print("Disabled")
-  elseif msg == "reload" or msg == "refresh" then
-    attachAll()
-    Print("Refreshed overlays")
-  else
-    Print("Commands: /nornedit on | off | reload")
-  end
-end

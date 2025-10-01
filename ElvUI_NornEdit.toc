@@ -4,7 +4,6 @@
 ## Author: Norn
 ## Version: 1.0.0
 ## RequiredDeps: ElvUI
-## SavedVariables: ElvUI_SkinDB
 
 compat.lua
 ElvUI_NornEdit.lua

@@ -5,6 +5,12 @@ local SM = E:NewModule("SquircleMap")
 local MM = E:GetModule('Minimap')
 local _G = _G
 
+-- Hardcoded configuration for minimap border
+local config = {
+  width = 200,  -- Absolute width for border
+  height = 200, -- Absolute height for border (square border)
+}
+
 local function GetAsset(path)
   return ("Interface\\AddOns\\%s\\%s"):format(ADDON_NAME, path)
 end
@@ -22,7 +28,7 @@ function SM:SkinMiniMap()
   borderFrame:SetFrameLevel(Minimap:GetFrameLevel() + 10)
 
   local borderTexture = borderFrame:CreateTexture(nil, "OVERLAY")
-  borderTexture:SetTexture(GetAsset("media\\border.png"))
+  borderTexture:SetTexture(GetAsset("media\\border2.blp"))
   borderTexture:SetAllPoints(borderFrame)
   borderTexture:SetBlendMode("BLEND")
   -- Trim edges slightly to avoid mip/bleed artifacts that can look like warping on some BLPs
@@ -31,9 +37,8 @@ function SM:SkinMiniMap()
   end
 
   local function UpdateBorderSize()
-    local minimapSize = Minimap:GetWidth()
-    local borderSize = minimapSize * 1.4
-    borderFrame:SetSize(borderSize, borderSize)
+    -- Use hardcoded absolute values instead of multiplication formula
+    borderFrame:SetSize(config.width, config.height)
     borderFrame:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
 
     if Minimap.backdrop then
