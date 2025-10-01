@@ -274,6 +274,34 @@ local function ConfigTable()
           E:StaticPopup_Show("PRIVATE_RL")
         end,
       },
+      spacer2 = {
+        order = 5,
+        type = "description",
+        name = "\n",
+      },
+      header2 = {
+        order = 6,
+        type = "header",
+        name = "Profile Installer",
+      },
+      description2 = {
+        order = 7,
+        type = "description",
+        name = "Install the Norn Edit layout profile.",
+      },
+      install = {
+        order = 8,
+        type = "execute",
+        name = "Install Profile",
+        desc = "Run the profile installation process.",
+        func = function() 
+          local InstallerData = ElvUI_NornEdit_InstallerData
+          if InstallerData then
+            E:GetModule("PluginInstaller"):Queue(InstallerData)
+            E:ToggleOptions()
+          end
+        end,
+      },
     },
   }
 end

@@ -10,3 +10,5 @@ compat.lua
 ElvUI_NornEdit.lua
 modules\NoBorders.lua
 modules\SquircleMinimap.lua
+profiles\elvui.lua
+modules\ProfileInstaller.lua
