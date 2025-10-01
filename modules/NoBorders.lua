@@ -2,7 +2,6 @@ local E, L, V, P, G = unpack(ElvUI)
 if not E then return end
 
 -- Always-on border removal for ElvUI elements
--- Adapted from dlecina/ElvUI_NoBorders (reduced; options removed; always enabled)
 
 local unpack, getmetatable = unpack, getmetatable
 local hooksecurefunc = hooksecurefunc
@@ -27,7 +26,7 @@ local function GetTemplate(template, isUnitFrameElement)
   end
 end
 
-local function CustomSetTemplate(frame, template, glossTex, ignoreUpdates, forcePixelMode, isUnitFrameElement, isNamePlateElement, noScale)
+local function CustomSetTemplate(frame, template, glossTex, ignoreUpdates, forcePixelMode, isUnitFrameElement)
   GetTemplate(template, isUnitFrameElement)
 
   if template ~= "NoBackdrop" then
@@ -51,10 +50,10 @@ local function CustomSetTemplate(frame, template, glossTex, ignoreUpdates, force
 end
 
 local function addapi(object)
-  if not object.isNornNoBordersHooked then
+  if not object.NornEdit_NoBordersHooked then
     local mt = getmetatable(object).__index
     hooksecurefunc(mt, "SetTemplate", CustomSetTemplate)
-    object.isNornNoBordersHooked = true
+    object.NornEdit_NoBordersHooked = true
   end
 end
 

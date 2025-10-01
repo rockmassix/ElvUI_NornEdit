@@ -4,6 +4,7 @@
 ## Author: Norn
 ## Version: 1.0.0
 ## RequiredDeps: ElvUI
+## OptionalDeps: LibElvUIPlugin-1.0
 
 compat.lua
 ElvUI_NornEdit.lua
