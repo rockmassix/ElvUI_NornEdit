@@ -1,0 +1,12 @@
+## Interface: 110200
+## Title: |cff1784d1ElvUI|r |cffe5cc80Norn|r Edit
+## Notes: Places a texture overlay on ElvUI frames (player/target/focus/pet/boss/party/raid/minimap)
+## Author: Norn
+## Version: 1.0.0
+## RequiredDeps: ElvUI
+## SavedVariables: ElvUI_SkinDB
+
+compat.lua
+ElvUI_NornEdit.lua
+modules\NoBorders.lua
+modules\SquircleMinimap.lua
