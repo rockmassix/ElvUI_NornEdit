@@ -2,7 +2,7 @@
 ## Title: |cff1784d1ElvUI|r |cffe5cc80Norn|r Edit
 ## Notes: Places a texture overlay on ElvUI frames (player/target/focus/pet/boss/party/raid/minimap)
 ## Author: Norn
-## Version: 1.0.0
+## Version: 0.1.0
 ## RequiredDeps: ElvUI
 ## OptionalDeps: LibElvUIPlugin-1.0
 
