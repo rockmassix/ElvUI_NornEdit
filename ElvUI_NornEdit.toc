@@ -9,7 +9,13 @@
 compat.lua
 ElvUI_NornEdit.lua
 modules\Media.lua
-modules\StatTracker.lua
+modules\datatexts\FPS.lua
+modules\datatexts\MS.lua
+modules\datatexts\Dura.lua
+modules\datatexts\Crit.lua
+modules\datatexts\Haste.lua
+modules\datatexts\Mastery.lua
+modules\datatexts\Versatility.lua
 modules\NoBorders.lua
 modules\SquircleMinimap.lua
 profiles\elvui.lua
