@@ -9,6 +9,7 @@
 compat.lua
 ElvUI_NornEdit.lua
 modules\Media.lua
+modules\StatTracker.lua
 modules\NoBorders.lua
 modules\SquircleMinimap.lua
 profiles\elvui.lua

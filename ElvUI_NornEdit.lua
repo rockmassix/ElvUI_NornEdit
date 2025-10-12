@@ -3,8 +3,7 @@ local E, L, V, P, G = unpack(ElvUI)
 local EP = LibStub("LibElvUIPlugin-1.0")
 local NE = E:NewModule("NornEdit")
 
--- Initialize Media module
-local MediaModule = E:NewModule("NornEdit_Media")
+-- Media module will be initialized by Media.lua
 
 local function Print(msg)
   DEFAULT_CHAT_FRAME:AddMessage("|cffe5cc80Norn|r Edit: " .. tostring(msg))
@@ -14,6 +13,7 @@ end
 P["NornEdit"] = {
   SquircleMinimap = true, -- Default enabled
   Media = true, -- Default enabled
+  StatTracker = true, -- Default enabled
 }
 V["NornEdit"] = {}
 
@@ -289,23 +289,34 @@ local function ConfigTable()
           E:StaticPopup_Show("PRIVATE_RL")
         end,
       },
-      spacer2 = {
+      stattracker = {
         order = 6,
+        type = "toggle",
+        name = "Stat Tracker",
+        desc = "Display a standalone stat tracker showing crit, haste, mastery, and versatility with flat values and custom colors.",
+        get = function(info) return E.private["NornEdit"]["StatTracker"] end,
+        set = function(info, value) 
+          E.private["NornEdit"]["StatTracker"] = value
+          E:StaticPopup_Show("PRIVATE_RL")
+        end,
+      },
+      spacer2 = {
+        order = 7,
         type = "description",
         name = "\n",
       },
       header2 = {
-        order = 7,
+        order = 8,
         type = "header",
         name = "Profile Installer",
       },
       description2 = {
-        order = 8,
+        order = 9,
         type = "description",
         name = "Install the Norn Edit layout profile.",
       },
       install = {
-        order = 9,
+        order = 10,
         type = "execute",
         name = "Install Profile",
         desc = "Run the profile installation process.",
@@ -327,8 +338,15 @@ function NE:Initialize()
   end
   
   -- Initialize Media module
+  local MediaModule = E:GetModule("NornEdit_Media")
   if MediaModule then
     MediaModule:Initialize()
+  end
+  
+  -- Initialize StatTracker module
+  local StatTrackerModule = E:GetModule("NornEdit_StatTracker")
+  if StatTrackerModule then
+    StatTrackerModule:Initialize()
   end
 end
 
