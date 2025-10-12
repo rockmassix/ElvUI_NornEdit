@@ -2,7 +2,7 @@
 ## Title: |cff1784d1ElvUI|r |cffe5cc80Norn|r Edit
 ## Notes: Places a texture overlay on ElvUI frames and provides Media registrations for fonts, statusbars, and borders
 ## Author: Norn
-## Version: 0.1.0
+## Version: 0.3.7
 ## RequiredDeps: ElvUI
 ## OptionalDeps: LibElvUIPlugin-1.0, LibSharedMedia-3.0
 
