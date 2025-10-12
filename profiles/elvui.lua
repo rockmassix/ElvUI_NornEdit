@@ -53,7 +53,7 @@ local ProfileData = {
                     ["barPet"] = {
                         ["enabled"] = false,
                     },
-                    ["font"] = "Albertus Bold",
+                    ["font"] = "Albertus Nova Bold",
                     ["stanceBar"] = {
                         ["enabled"] = false,
                     },
@@ -73,7 +73,7 @@ local ProfileData = {
                         ["timeYOffset"] = -4,
                     },
                     ["debuffs"] = {
-                        ["countFont"] = "Albertus Bold",
+                        ["countFont"] = "Albertus Nova Bold",
                         ["countFontSize"] = 12,
                         ["seperateOwn"] = 0,
                         ["sortDir"] = "+",
@@ -84,9 +84,9 @@ local ProfileData = {
                     },
                 },
                 ["bags"] = {
-                    ["countFont"] = "Albertus Bold",
+                    ["countFont"] = "Albertus Nova Bold",
                     ["countFontSize"] = 12,
-                    ["itemLevelFont"] = "Albertus Bold",
+                    ["itemLevelFont"] = "Albertus Nova Bold",
                     ["itemLevelFontSize"] = 12,
                     ["vendorGrays"] = {
                         ["details"] = true,
@@ -95,7 +95,7 @@ local ProfileData = {
                     },
                 },
                 ["chat"] = {
-                    ["font"] = "Albertus Bold",
+                    ["font"] = "Albertus Nova Bold",
                     ["fontSize"] = 12,
                     ["hideCopyButton"] = true,
                     ["inactivityTimer"] = 60,
@@ -123,7 +123,7 @@ local ProfileData = {
                     },
                 },
                 ["datatexts"] = {
-                    ["font"] = "Albertus Bold",
+                    ["font"] = "Albertus Nova Bold",
                     ["panels"] = {
                         ["LeftChatDataPanel"] = {
                             ["enable"] = false,
@@ -145,7 +145,7 @@ local ProfileData = {
                     ["afkChat"] = false,
                     ["afkSpin"] = false,
                     ["altPowerBar"] = {
-                        ["font"] = "Albertus Bold",
+                        ["font"] = "Albertus Nova Bold",
                         ["statusBar"] = "Norn",
                     },
                     ["autoRepair"] = "PLAYER",
@@ -156,30 +156,30 @@ local ProfileData = {
                     ["customGlow"] = {
                         ["style"] = "Proc Glow",
                     },
-                    ["font"] = "Albertus Bold",
+                    ["font"] = "Albertus Nova Bold",
                     ["fontStyle"] = "SHADOW",
                     ["fonts"] = {
                         ["cooldown"] = {
-                            ["font"] = "Albertus Bold",
+                            ["font"] = "Albertus Nova Bold",
                             ["outline"] = "SHADOW",
                         },
                         ["worldsubzone"] = {
                             ["enable"] = true,
-                            ["font"] = "Albertus Bold",
+                            ["font"] = "Albertus Nova Bold",
                             ["outline"] = "SHADOW",
                         },
                         ["worldzone"] = {
                             ["enable"] = true,
-                            ["font"] = "Albertus Bold",
+                            ["font"] = "Albertus Nova Bold",
                             ["outline"] = "SHADOW",
                         },
                     },
                     ["hideZoneText"] = true,
                     ["itemLevel"] = {
-                        ["itemLevelFont"] = "Albertus Bold",
+                        ["itemLevelFont"] = "Albertus Nova Bold",
                         ["itemLevelFontOutline"] = "SHADOW",
                         ["itemLevelRarity"] = false,
-                        ["totalLevelFont"] = "Albertus Bold",
+                        ["totalLevelFont"] = "Albertus Nova Bold",
                         ["totalLevelFontOutline"] = "SHADOW",
                     },
                     ["loginmessage"] = false,
@@ -190,7 +190,7 @@ local ProfileData = {
                                 ["yOffset"] = -25,
                             },
                         },
-                        ["locationFont"] = "Albertus Bold",
+                        ["locationFont"] = "Albertus Nova Bold",
                         ["locationText"] = "HIDE",
                         ["resetZoom"] = {
                             ["enable"] = true,
@@ -199,7 +199,7 @@ local ProfileData = {
                     },
                     ["queueStatus"] = {
                         ["enable"] = false,
-                        ["font"] = "Albertus Bold",
+                        ["font"] = "Albertus Nova Bold",
                         ["scale"] = 0.6,
                     },
                     ["stickyFrames"] = false,
@@ -241,7 +241,7 @@ local ProfileData = {
                     ["VOICECHAT"] = "TOPLEFT,UIParent,TOPLEFT,570,-121",
                 },
                 ["nameplates"] = {
-                    ["font"] = "Albertus Bold",
+                    ["font"] = "Albertus Nova Bold",
                 },
                 ["tooltip"] = {
                     ["alwaysShowRealm"] = true,
@@ -249,11 +249,11 @@ local ProfileData = {
                     ["cursorAnchorType"] = "ANCHOR_CURSOR_RIGHT",
                     ["cursorAnchorX"] = 16,
                     ["fadeOut"] = false,
-                    ["font"] = "Albertus Bold",
+                    ["font"] = "Albertus Nova Bold",
                     ["gender"] = true,
                     ["headerFont"] = "Albertus Black",
                     ["healthBar"] = {
-                        ["font"] = "Albertus Bold",
+                        ["font"] = "Albertus Nova Bold",
                         ["statusPosition"] = "DISABLED",
                     },
                     ["modifierID"] = "SHIFT",
@@ -287,7 +287,7 @@ local ProfileData = {
                         ["healthMultiplier"] = 0.35,
                         ["healthclass"] = true,
                     },
-                    ["font"] = "Albertus Bold",
+                    ["font"] = "Albertus Nova Bold",
                     ["fontOutline"] = "SHADOW",
                     ["fontSize"] = 12,
                     ["statusbar"] = "Norn",
@@ -315,7 +315,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -384,7 +384,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -450,7 +450,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -505,7 +505,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -553,7 +553,7 @@ local ProfileData = {
                             },
                             ["rdebuffs"] = {
                                 ["enable"] = false,
-                                ["font"] = "Albertus Bold",
+                                ["font"] = "Albertus Nova Bold",
                             },
                             ["readycheckIcon"] = {
                                 ["position"] = "RIGHT",
@@ -611,7 +611,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -687,7 +687,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -742,7 +742,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -779,7 +779,7 @@ local ProfileData = {
                             },
                             ["rdebuffs"] = {
                                 ["enable"] = false,
-                                ["font"] = "Albertus Bold",
+                                ["font"] = "Albertus Nova Bold",
                             },
                             ["readycheckIcon"] = {
                                 ["attachTo"] = "Frame",
@@ -803,13 +803,13 @@ local ProfileData = {
                         ["raid2"] = {
                             ["enable"] = false,
                             ["rdebuffs"] = {
-                                ["font"] = "Albertus Bold",
+                                ["font"] = "Albertus Nova Bold",
                             },
                         },
                         ["raid3"] = {
                             ["enable"] = false,
                             ["rdebuffs"] = {
-                                ["font"] = "Albertus Bold",
+                                ["font"] = "Albertus Nova Bold",
                             },
                         },
                         ["tank"] = {
@@ -855,7 +855,7 @@ local ProfileData = {
                                 ["[health]"] = {
                                     ["attachTextTo"] = "Health",
                                     ["enable"] = true,
-                                    ["font"] = "Albertus Bold",
+                                    ["font"] = "Albertus Nova Bold",
                                     ["fontOutline"] = "SHADOW",
                                     ["justifyH"] = "CENTER",
                                     ["size"] = 14,
@@ -935,20 +935,20 @@ local ProfileData = {
             },
             ["general"] = {
                 ["blizzardFontSize"] = true,
-                ["chatBubbleFont"] = "Albertus Bold",
+                ["chatBubbleFont"] = "Albertus Nova Bold",
                 ["chatBubbleFontOutline"] = "SHADOW",
                 ["chatBubbles"] = "disabled",
-                ["dmgfont"] = "Albertus Bold",
+                ["dmgfont"] = "Albertus Nova Bold",
                 ["glossTex"] = "Norn",
                 ["minimap"] = {
                     ["hideClassHallReport"] = true,
                     ["hideTracking"] = true,
                 },
-                ["namefont"] = "Albertus Bold",
-                ["nameplateFont"] = "Albertus Bold",
+                ["namefont"] = "Albertus Nova Bold",
+                ["nameplateFont"] = "Albertus Nova Bold",
                 ["nameplateFontOutline"] = "SHADOW",
                 ["nameplateFontSize"] = 13,
-                ["nameplateLargeFont"] = "Albertus Bold",
+                ["nameplateLargeFont"] = "Albertus Nova Bold",
                 ["nameplateLargeFontOutline"] = "SHADOW",
                 ["nameplateLargeFontSize"] = 16,
                 ["normTex"] = "Norn",

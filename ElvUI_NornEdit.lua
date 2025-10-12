@@ -3,8 +3,8 @@ local E, L, V, P, G = unpack(ElvUI)
 local EP = LibStub("LibElvUIPlugin-1.0")
 local NE = E:NewModule("NornEdit")
 
--- Initialize SharedMedia module
-local SharedMediaModule = E:NewModule("NornEdit_SharedMedia")
+-- Initialize Media module
+local MediaModule = E:NewModule("NornEdit_Media")
 
 local function Print(msg)
   DEFAULT_CHAT_FRAME:AddMessage("|cffe5cc80Norn|r Edit: " .. tostring(msg))
@@ -13,7 +13,7 @@ end
 -- Initialize ElvUI private settings
 P["NornEdit"] = {
   SquircleMinimap = true, -- Default enabled
-  SharedMedia = true, -- Default enabled
+  Media = true, -- Default enabled
 }
 V["NornEdit"] = {}
 
@@ -278,14 +278,14 @@ local function ConfigTable()
           E:StaticPopup_Show("PRIVATE_RL")
         end,
       },
-      sharedmedia = {
+      media = {
         order = 5,
         type = "toggle",
-        name = "SharedMedia Registration",
+        name = "Media Registration",
         desc = "Register fonts, statusbars, and borders with LibSharedMedia-3.0.",
-        get = function(info) return E.private["NornEdit"]["SharedMedia"] end,
+        get = function(info) return E.private["NornEdit"]["Media"] end,
         set = function(info, value) 
-          E.private["NornEdit"]["SharedMedia"] = value
+          E.private["NornEdit"]["Media"] = value
           E:StaticPopup_Show("PRIVATE_RL")
         end,
       },
@@ -326,9 +326,9 @@ function NE:Initialize()
     EP:RegisterPlugin(ADDON_NAME, ConfigTable)
   end
   
-  -- Initialize SharedMedia module
-  if SharedMediaModule then
-    SharedMediaModule:Initialize()
+  -- Initialize Media module
+  if MediaModule then
+    MediaModule:Initialize()
   end
 end
 

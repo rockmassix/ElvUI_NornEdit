@@ -1,6 +1,6 @@
 local ADDON_NAME = ...
 local E, L, V, P, G = unpack(ElvUI)
-local NE = E:NewModule("NornEdit_SharedMedia")
+local NE = E:NewModule("NornEdit_Media")
 
 -- Check if LibSharedMedia-3.0 is available
 local LSM = LibStub("LibSharedMedia-3.0", true)
@@ -14,16 +14,16 @@ local function GetAsset(path)
 end
 
 function NE:Initialize()
-    -- Check if SharedMedia is enabled in settings
-    if not E.private["NornEdit"]["SharedMedia"] then
+    -- Check if Media is enabled in settings
+    if not E.private["NornEdit"]["Media"] then
         return
     end
     
     -- Register fonts
     LSM:Register("font", "Gilroy Bold", GetAsset("media\\font\\Gilroy-Bold.ttf"))
     LSM:Register("font", "Gilroy Regular", GetAsset("media\\font\\Gilroy-Regular.ttf"))
-    LSM:Register("font", "Naowh", GetAsset("media\\font\\Naowh.ttf"))
-    LSM:Register("font", "Albertus Bold", GetAsset("media\\font\\Albertusnova-bold.ttf"))
+    LSM:Register("font", "Naowh", GetAsset("media\\font\\Naowh-Edited.ttf"))
+    LSM:Register("font", "Albertus Nova Bold", GetAsset("media\\font\\Albertus-Nova-Bold.ttf"))
     
     -- Register statusbars
     LSM:Register("statusbar", "Norn", GetAsset("media\\statusbar\\Norn.tga"))
@@ -32,13 +32,13 @@ function NE:Initialize()
     LSM:Register("statusbar", "Grey", GetAsset("media\\statusbar\\Grey.tga"))
     
     -- Register borders
-    LSM:Register("border", "borderish", GetAsset("media\\background\\borderish.tga"))
+    LSM:Register("border", "borderish", GetAsset("media\\borderish.tga"))
     
     -- Print confirmation
     if DEFAULT_CHAT_FRAME then
-        DEFAULT_CHAT_FRAME:AddMessage("|cffe5cc80Norn|r Edit: SharedMedia registrations completed")
+        DEFAULT_CHAT_FRAME:AddMessage("|cffe5cc80Norn|r Edit: Media registrations completed")
     end
 end
 
 -- Make the module available globally for other modules
-ElvUI_NornEdit_SharedMedia = NE
+ElvUI_NornEdit_Media = NE
