@@ -1,13 +1,14 @@
 ## Interface: 110200
 ## Title: |cff1784d1ElvUI|r |cffe5cc80Norn|r Edit
-## Notes: Places a texture overlay on ElvUI frames (player/target/focus/pet/boss/party/raid/minimap)
+## Notes: Places a texture overlay on ElvUI frames and provides SharedMedia registrations for fonts, statusbars, and borders
 ## Author: Norn
 ## Version: 1.0.0
 ## RequiredDeps: ElvUI
-## OptionalDeps: LibElvUIPlugin-1.0
+## OptionalDeps: LibElvUIPlugin-1.0, LibSharedMedia-3.0
 
 compat.lua
 ElvUI_NornEdit.lua
+modules\SharedMedia.lua
 modules\NoBorders.lua
 modules\SquircleMinimap.lua
 profiles\elvui.lua
