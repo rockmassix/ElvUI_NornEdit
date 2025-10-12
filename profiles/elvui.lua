@@ -3,10 +3,8 @@
 
 local ProfileData = {
     profileKeys = {
-        ["Rumil - Draenor"] = "Norn Edit",
-        -- Add your other characters here:
-        -- ["CharacterName - ServerName"] = "Norn Edit",
-        -- ["AnotherChar - AnotherServer"] = "Norn Edit",
+        -- Character profiles will be automatically added when users install
+        -- Format: ["CharacterName - ServerName"] = "Norn Edit"
     },
     
     profiles = {
