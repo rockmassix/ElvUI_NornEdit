@@ -37,5 +37,14 @@ local function OnEnter()
     DT.tooltip:Show()
 end
 
--- Register the Mastery datatext (no ApplySettings = no customization tab)
-DT:RegisterDatatext('NE:Mastery', nil, {'MASTERY_UPDATE'}, OnEvent, nil, nil, OnEnter, nil, "NE: Mastery")
+-- Minimal ApplySettings to prevent db errors
+local function ApplySettings()
+    local db = E.db.datatexts.panels and E.db.datatexts.panels.Stats
+    if db then
+        db.decimalLength = db.decimalLength or 0
+        db.NoLabel = db.NoLabel or false
+    end
+end
+
+-- Register the Mastery datatext
+DT:RegisterDatatext('NE:Mastery', nil, {'MASTERY_UPDATE'}, OnEvent, nil, nil, OnEnter, nil, "NE: Mastery", ApplySettings)

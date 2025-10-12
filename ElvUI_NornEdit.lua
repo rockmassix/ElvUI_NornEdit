@@ -12,7 +12,6 @@ end
 -- Initialize ElvUI private settings
 P["NornEdit"] = {
   SquircleMinimap = true, -- Default enabled
-  Media = true, -- Default enabled
 }
 V["NornEdit"] = {}
 
@@ -277,34 +276,23 @@ local function ConfigTable()
           E:StaticPopup_Show("PRIVATE_RL")
         end,
       },
-      media = {
-        order = 5,
-        type = "toggle",
-        name = "Media Registration",
-        desc = "Register fonts, statusbars, and borders with LibSharedMedia-3.0.",
-        get = function(info) return E.private["NornEdit"]["Media"] end,
-        set = function(info, value) 
-          E.private["NornEdit"]["Media"] = value
-          E:StaticPopup_Show("PRIVATE_RL")
-        end,
-      },
       spacer2 = {
-        order = 6,
+        order = 5,
         type = "description",
         name = "\n",
       },
       header2 = {
-        order = 7,
+        order = 6,
         type = "header",
         name = "Profile Installer",
       },
       description2 = {
-        order = 8,
+        order = 7,
         type = "description",
         name = "Install the Norn Edit layout profile.",
       },
       install = {
-        order = 9,
+        order = 8,
         type = "execute",
         name = "Install Profile",
         desc = "Run the profile installation process.",
@@ -325,7 +313,7 @@ function NE:Initialize()
     EP:RegisterPlugin(ADDON_NAME, ConfigTable)
   end
   
-  -- Initialize Media module
+  -- Initialize Media module (always enabled)
   local MediaModule = E:GetModule("NornEdit_Media")
   if MediaModule then
     MediaModule:Initialize()

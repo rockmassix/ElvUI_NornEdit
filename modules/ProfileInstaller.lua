@@ -56,6 +56,26 @@ local function SetupLayout()
         end
     end
     
+    -- Ensure NornEdit modules are enabled by default
+    if not E.private["NornEdit"] then
+        E.private["NornEdit"] = {}
+    end
+    E.private["NornEdit"]["SquircleMinimap"] = true
+    
+    -- Delay global settings application to avoid SetFrameStrata errors
+    C_Timer.After(0.1, function()
+        if ProfileData.global then
+            -- Global settings are account-wide in ElvUI
+            -- Ensure E.global exists
+            if not E.global then
+                E.global = {}
+            end
+            for key, value in pairs(ProfileData.global) do
+                E.global[key] = value
+            end
+        end
+    end)
+    
     -- Set current profile
     local currentProfile = ProfileData.profileKeys and ProfileData.profileKeys[E.myname.." - "..E.myrealm]
     if currentProfile then

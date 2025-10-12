@@ -14,10 +14,7 @@ local function GetAsset(path)
 end
 
 function NE:Initialize()
-    -- Check if Media is enabled in settings
-    if not E.private["NornEdit"]["Media"] then
-        return
-    end
+    -- Media registration is always enabled
     
     -- Register fonts
     LSM:Register("font", "Gilroy Bold", GetAsset("media\\font\\Gilroy-Bold.ttf"))
