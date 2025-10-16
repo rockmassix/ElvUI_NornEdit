@@ -12,6 +12,7 @@ end
 -- Initialize ElvUI private settings
 P["NornEdit"] = {
   SquircleMinimap = true, -- Default enabled
+  minimapIcons = true, -- Default enabled
   overlay = {
     enabled = true,
     texture = "media\\border.blp",
@@ -303,23 +304,34 @@ local function ConfigTable()
           E:StaticPopup_Show("PRIVATE_RL")
         end,
       },
-      spacer2 = {
+      minimapIcons = {
         order = 5,
+        type = "toggle",
+        name = "Minimap Icons",
+        desc = "Show icons next to Minimap datatext panel entries.",
+        get = function(info) return E.private["NornEdit"]["minimapIcons"] end,
+        set = function(info, value) 
+          E.private["NornEdit"]["minimapIcons"] = value
+          E:StaticPopup_Show("PRIVATE_RL")
+        end,
+      },
+      spacer2 = {
+        order = 6,
         type = "description",
         name = "\n",
       },
       header2 = {
-        order = 6,
+        order = 7,
         type = "header",
         name = "Profile Installer",
       },
       description2 = {
-        order = 7,
+        order = 8,
         type = "description",
         name = "Install the Norn Edit layout profile.",
       },
       install = {
-        order = 8,
+        order = 9,
         type = "execute",
         name = "Install Profile",
         desc = "Run the profile installation process.",

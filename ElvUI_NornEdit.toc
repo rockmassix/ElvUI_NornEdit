@@ -17,5 +17,6 @@ modules\datatexts\Mastery.lua
 modules\datatexts\Versatility.lua
 modules\NoBorders.lua
 modules\SquircleMinimap.lua
+modules\MinimapIcons.lua
 profiles\elvui.lua
 modules\ProfileInstaller.lua

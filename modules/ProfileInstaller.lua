@@ -61,6 +61,7 @@ local function SetupLayout()
         E.private["NornEdit"] = {}
     end
     E.private["NornEdit"]["SquircleMinimap"] = true
+    E.private["NornEdit"]["minimapIcons"] = true
     
     -- Delay global settings application to avoid SetFrameStrata errors
     C_Timer.After(0.1, function()
