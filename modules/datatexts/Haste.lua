@@ -37,14 +37,5 @@ local function OnEnter()
     DT.tooltip:Show()
 end
 
--- Minimal ApplySettings to prevent db errors
-local function ApplySettings()
-    local db = E.db.datatexts.panels and E.db.datatexts.panels.Stats
-    if db then
-        db.decimalLength = db.decimalLength or 0
-        db.NoLabel = db.NoLabel or false
-    end
-end
-
 -- Register the Haste datatext
-DT:RegisterDatatext('NE:Haste', nil, {'UNIT_STATS', 'UNIT_SPELL_HASTE', 'UNIT_AURA'}, OnEvent, nil, nil, OnEnter, nil, "NE: Haste", ApplySettings)
+DT:RegisterDatatext('NE:Haste', nil, {'UNIT_STATS', 'UNIT_SPELL_HASTE', 'UNIT_AURA'}, OnEvent, nil, nil, OnEnter, nil, "NE: Haste")

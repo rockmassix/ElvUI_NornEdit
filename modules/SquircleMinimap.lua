@@ -5,9 +5,19 @@ local SM = E:NewModule("SquircleMap")
 local MM = E:GetModule('Minimap')
 local _G = _G
 
--- Use consolidated configuration and utilities from main file
-local config = ElvUI_NornEdit_Config.minimap
-local GetAsset = ElvUI_NornEdit_Utils.GetAsset
+-- Utility function to get asset path
+local function GetAsset(path)
+  return ("Interface\\AddOns\\%s\\%s"):format(ADDON_NAME, path)
+end
+
+-- Get config from ElvUI database
+local function GetMinimapConfig()
+  local cfg = E.private["NornEdit"]
+  if cfg and cfg.minimap then
+    return cfg.minimap
+  end
+  return P["NornEdit"].minimap
+end
 
 function SM:SkinMiniMap()
   local Minimap = _G.Minimap
@@ -21,8 +31,10 @@ function SM:SkinMiniMap()
     return
   end
 
+  local config = GetMinimapConfig()
+
   -- Apply mask using config
-  Minimap:SetMaskTexture(config.mask)
+  Minimap:SetMaskTexture(GetAsset(config.mask))
   Minimap:SetHitRectInsets(0, 0, 0, 0)
   Minimap:SetClampRectInsets(0, 0, 0, 0)
 
@@ -31,7 +43,7 @@ function SM:SkinMiniMap()
   borderFrame:SetFrameLevel(Minimap:GetFrameLevel() + 10)
 
   local borderTexture = borderFrame:CreateTexture(nil, "OVERLAY")
-  borderTexture:SetTexture(config.texture)
+  borderTexture:SetTexture(GetAsset(config.texture))
   borderTexture:SetAllPoints(borderFrame)
   borderTexture:SetBlendMode("BLEND")
   -- Trim edges slightly to avoid mip/bleed artifacts that can look like warping on some BLPs
@@ -43,8 +55,8 @@ function SM:SkinMiniMap()
   Minimap.NornEdit_Skinned = true
 
   local function UpdateBorderSize()
-    -- Use hardcoded absolute values
-    borderFrame:SetSize(config.width, config.height)
+    -- Use config values
+    borderFrame:SetSize(config.width or 212, config.height or 212)
     borderFrame:SetPoint("CENTER", Minimap, "CENTER", 0, 0)
 
     if Minimap.backdrop then

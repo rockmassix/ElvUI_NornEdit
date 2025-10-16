@@ -6,7 +6,6 @@
 ## RequiredDeps: ElvUI
 ## OptionalDeps: LibElvUIPlugin-1.0, LibSharedMedia-3.0
 
-compat.lua
 ElvUI_NornEdit.lua
 modules\Media.lua
 modules\datatexts\FPS.lua

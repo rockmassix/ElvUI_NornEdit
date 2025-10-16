@@ -4,7 +4,7 @@ local addon, ns = ...
 
 -- Plugin Information
 local MyPluginName = "Norn Edit"
-local Version = "1.0.0"
+local Version = C_AddOns.GetAddOnMetadata("ElvUI_NornEdit", "Version") or "0.3.7"
 
 -- Create module
 local mod = E:NewModule("NornEditInstaller")

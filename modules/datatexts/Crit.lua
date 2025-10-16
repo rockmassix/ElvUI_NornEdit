@@ -37,14 +37,5 @@ local function OnEnter()
     DT.tooltip:Show()
 end
 
--- Minimal ApplySettings to prevent db errors
-local function ApplySettings()
-    local db = E.db.datatexts.panels and E.db.datatexts.panels.Stats
-    if db then
-        db.decimalLength = db.decimalLength or 0
-        db.NoLabel = db.NoLabel or false
-    end
-end
-
 -- Register the Crit datatext
-DT:RegisterDatatext('NE:Crit', nil, {'UNIT_STATS', 'UNIT_AURA', 'PLAYER_DAMAGE_DONE_MODS'}, OnEvent, nil, nil, OnEnter, nil, "NE: Crit", ApplySettings)
+DT:RegisterDatatext('NE:Crit', nil, {'UNIT_STATS', 'UNIT_AURA', 'PLAYER_DAMAGE_DONE_MODS'}, OnEvent, nil, nil, OnEnter, nil, "NE: Crit")

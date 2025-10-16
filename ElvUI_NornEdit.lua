@@ -12,38 +12,43 @@ end
 -- Initialize ElvUI private settings
 P["NornEdit"] = {
   SquircleMinimap = true, -- Default enabled
-}
-V["NornEdit"] = {}
-
--- Configuration
-local config = {
-  enabled = true,
-  texture = ("Interface\\AddOns\\%s\\media\\border.blp"):format(ADDON_NAME),
-  width = 256,
-  height = 64,
-  xOffset = 0,
-  yOffset = 5,
-  blend = "BLEND",
-  strata = "HIGH",
-  
+  overlay = {
+    enabled = true,
+    texture = "media\\border.blp",
+    width = 256,
+    height = 64,
+    xOffset = 0,
+    yOffset = 4,
+    blend = "BLEND",
+    strata = "HIGH",
+  },
   minimap = {
     width = 212,
     height = 212,
-    texture = ("Interface\\AddOns\\%s\\media\\border2.blp"):format(ADDON_NAME),
-    mask = ("Interface\\AddOns\\%s\\media\\mask"):format(ADDON_NAME),
+    texture = "media\\border2.blp",
+    mask = "media\\mask",
   }
 }
+V["NornEdit"] = {}
 
--- Make config available to other modules
-ElvUI_NornEdit_Config = config
-
--- Simple utility function
+-- Utility function to get asset path
 local function GetAsset(path)
   return ("Interface\\AddOns\\%s\\%s"):format(ADDON_NAME, path)
 end
 
--- Make utility available to other modules
-ElvUI_NornEdit_Utils = { GetAsset = GetAsset }
+-- Module utility method
+function NE:GetAsset(path)
+  return GetAsset(path)
+end
+
+-- Get config with validation
+local function GetConfig()
+  local cfg = E.private["NornEdit"]
+  if not cfg or not cfg.overlay then
+    return P["NornEdit"]
+  end
+  return cfg
+end
 
 -- Simple ElvUI check
 local function IsElvUILoaded()
@@ -79,12 +84,13 @@ end
 
 -- Apply overlay to frame
 local function applyOverlayToFrame(frame, skipVisibility)
-  if not config.enabled or not frame or not frame.IsObjectType or not frame:IsObjectType("Frame") then
+  local cfg = GetConfig()
+  if not cfg.overlay.enabled or not frame or not frame:IsObjectType("Frame") then
     return
   end
   
   -- Skip visibility check for boss, raid, party, and focus frames
-  if not skipVisibility and (not frame.IsVisible or not frame:IsVisible()) then
+  if not skipVisibility and not frame:IsVisible() then
     return
   end
   
@@ -97,27 +103,37 @@ local function applyOverlayToFrame(frame, skipVisibility)
     return
   end
 
+  -- Validate config values
+  local texturePath = GetAsset(cfg.overlay.texture)
+  local width = cfg.overlay.width or 256
+  local height = cfg.overlay.height or 64
+  local xOffset = cfg.overlay.xOffset or 0
+  local yOffset = cfg.overlay.yOffset or 4
+  local blend = cfg.overlay.blend or "BLEND"
+  local strata = cfg.overlay.strata or "HIGH"
+
   local texture = parent:CreateTexture(nil, "OVERLAY")
-  texture:SetTexture(config.texture)
-  texture:SetBlendMode(config.blend or "BLEND")
-  texture:SetSize(config.width, config.height)
-  texture:SetPoint("CENTER", parent, "CENTER", config.xOffset, config.yOffset)
+  texture:SetTexture(texturePath)
+  texture:SetBlendMode(blend)
+  texture:SetSize(width, height)
+  texture:SetPoint("CENTER", parent, "CENTER", xOffset, yOffset)
   texture:Show()
 
   frame.NornEdit_Overlay = texture
 
   -- Keep on top
-  if parent.SetFrameStrata and config.strata then
-    parent:SetFrameStrata(config.strata)
+  if parent.SetFrameStrata and strata then
+    parent:SetFrameStrata(strata)
   end
   
-  -- Set up cleanup when frame is destroyed
-  if frame.SetScript then
-    frame:SetScript("OnHide", function(self)
+  -- Hook cleanup when frame is hidden (don't overwrite existing scripts)
+  if not frame.NornEdit_OverlayHooked then
+    frame:HookScript("OnHide", function(self)
       if self.NornEdit_Overlay then
         removeOverlayFromFrame(self)
       end
     end)
+    frame.NornEdit_OverlayHooked = true
   end
 end
 
@@ -200,16 +216,21 @@ local function cleanupAllOverlays()
   end
 end
 
--- Make cleanup available to other modules
-ElvUI_NornEdit_Utils.CleanupAll = cleanupAllOverlays
+-- Make cleanup available as module method
+function NE:CleanupOverlays()
+  cleanupAllOverlays()
+end
 
 -- Main event driver
 local driver = CreateFrame("Frame")
+local ticker = nil
+
 driver:RegisterEvent("PLAYER_ENTERING_WORLD")
 driver:RegisterEvent("GROUP_ROSTER_UPDATE")
 driver:RegisterEvent("PLAYER_TARGET_CHANGED")
 driver:RegisterEvent("PLAYER_FOCUS_CHANGED")
 driver:RegisterEvent("UNIT_PET")
+driver:RegisterEvent("PLAYER_LOGOUT")
 driver:SetScript("OnEvent", function(self, event)
   if event == "PLAYER_ENTERING_WORLD" then
     if not IsElvUILoaded() then
@@ -223,11 +244,17 @@ driver:SetScript("OnEvent", function(self, event)
     end)
 
     -- Simple periodic check every 2 seconds
-    if self.ticker then
-      self.ticker:Cancel()
+    if ticker then
+      ticker:Cancel()
     end
-    self.ticker = C_Timer.NewTicker(2.0, attachAll)
+    ticker = C_Timer.NewTicker(2.0, attachAll)
     
+  elseif event == "PLAYER_LOGOUT" then
+    -- Clean up ticker on logout
+    if ticker then
+      ticker:Cancel()
+      ticker = nil
+    end
   elseif event == "PLAYER_FOCUS_CHANGED" then
     C_Timer.After(0.05, function()
       tryAttachByName("ElvUF_Focus")
@@ -312,13 +339,6 @@ function NE:Initialize()
   if EP then
     EP:RegisterPlugin(ADDON_NAME, ConfigTable)
   end
-  
-  -- Initialize Media module (always enabled)
-  local MediaModule = E:GetModule("NornEdit_Media")
-  if MediaModule then
-    MediaModule:Initialize()
-  end
-  
 end
 
 local function InitializeCallback()
