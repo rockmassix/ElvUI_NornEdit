@@ -76,7 +76,7 @@ end
 
 -- Apply backdrop to chat tab
 local function ApplyTabBackdrop(tab)
-    if not tab or tab.NornEdit_TabBackdrop then return end
+    
     
     -- Hide default tab textures
     if tab.Left then tab.Left:SetTexture(nil) end
@@ -107,6 +107,49 @@ local function ApplyTabBackdrop(tab)
     end
 end
 
+-- Apply backdrop to chat editbox
+local function ApplyEditBoxBackdrop(editBox)
+    if not editBox or editBox.NornEdit_EditBoxBackdrop then return end
+    
+    -- Hide default ElvUI textures
+    if editBox.Left then editBox.Left:SetTexture(nil) end
+    if editBox.Mid then editBox.Mid:SetTexture(nil) end
+    if editBox.Right then editBox.Right:SetTexture(nil) end
+    if editBox.FocusLeft then editBox.FocusLeft:SetTexture(nil) end
+    if editBox.FocusMid then editBox.FocusMid:SetTexture(nil) end
+    if editBox.FocusRight then editBox.FocusRight:SetTexture(nil) end
+    
+    -- Clear backdrop if SetBackdrop exists
+    if editBox.SetBackdrop then
+        editBox:SetBackdrop(nil)
+        editBox:SetBackdropColor(0, 0, 0, 0)
+        editBox:SetBackdropBorderColor(0, 0, 0, 0)
+    end
+    
+    -- Create transparent backdrop for the editbox
+    editBox.NornEdit_EditBoxBackdrop = CreateTransparentBackdrop(editBox, BACKDROP_ALPHA, 4)
+    
+    -- Hook SetTemplate to prevent ElvUI from reapplying its styling
+    if editBox.SetTemplate then
+        local originalSetTemplate = editBox.SetTemplate
+        editBox.SetTemplate = function(self, template, glossTex, ignoreUpdates, forcePixelMode)
+            -- Clear any backdrop ElvUI tries to apply
+            if self.SetBackdrop then
+                self:SetBackdrop(nil)
+                self:SetBackdropColor(0, 0, 0, 0)
+                self:SetBackdropBorderColor(0, 0, 0, 0)
+            end
+            
+            if self.Left then self.Left:SetTexture(nil) end
+            if self.Mid then self.Mid:SetTexture(nil) end
+            if self.Right then self.Right:SetTexture(nil) end
+            if self.FocusLeft then self.FocusLeft:SetTexture(nil) end
+            if self.FocusMid then self.FocusMid:SetTexture(nil) end
+            if self.FocusRight then self.FocusRight:SetTexture(nil) end
+        end
+    end
+end
+
 -- Apply to all chat windows
 function SCB:StyleAllChats()
     for i = 1, NUM_CHAT_WINDOWS do
@@ -117,6 +160,11 @@ function SCB:StyleAllChats()
             local tab = _G["ChatFrame" .. i .. "Tab"]
             if tab then
                 ApplyTabBackdrop(tab)
+            end
+            
+            local editBox = _G["ChatFrame" .. i .. "EditBox"]
+            if editBox then
+                ApplyEditBoxBackdrop(editBox)
             end
         end
     end
