@@ -13,6 +13,7 @@ end
 P["NornEdit"] = {
   SquircleMinimap = true, -- Default enabled
   minimapIcons = true, -- Default enabled
+  SimpleChatBackdrop = true, -- Default enabled
   overlay = {
     enabled = true,
     texture = "media\\border.blp",
@@ -315,23 +316,34 @@ local function ConfigTable()
           E:StaticPopup_Show("PRIVATE_RL")
         end,
       },
-      spacer2 = {
+      simpleChatBackdrop = {
         order = 6,
+        type = "toggle",
+        name = "Simple Chat Backdrop",
+        desc = "Apply transparent backdrop to chat frames and tabs.",
+        get = function(info) return E.private["NornEdit"]["SimpleChatBackdrop"] end,
+        set = function(info, value)
+          E.private["NornEdit"]["SimpleChatBackdrop"] = value
+          E:StaticPopup_Show("PRIVATE_RL")
+        end,
+      },
+      spacer2 = {
+        order = 7,
         type = "description",
         name = "\n",
       },
       header2 = {
-        order = 7,
+        order = 8,
         type = "header",
         name = "Profile Installer",
       },
       description2 = {
-        order = 8,
+        order = 9,
         type = "description",
         name = "Install the Norn Edit layout profile.",
       },
       install = {
-        order = 9,
+        order = 10,
         type = "execute",
         name = "Install Profile",
         desc = "Run the profile installation process.",
@@ -358,3 +370,4 @@ local function InitializeCallback()
 end
 
 E:RegisterModule(NE:GetName(), InitializeCallback)
+
